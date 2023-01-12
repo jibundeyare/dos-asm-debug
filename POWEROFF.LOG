@@ -1,0 +1,9 @@
+-a 100
+26B8:0100 ; power off
+26B8:0100 ; [Making POWEROFF.COM and REBOOT.COM using MS-DOS DEBUG - YouTube](https://www
+26B8:0100 mov ax,5307
+26B8:0103 mov bx,1
+26B8:0106 mov cx,3
+26B8:0109 int 15
+26B8:010B 
+-q

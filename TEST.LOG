@@ -1,0 +1,7 @@
+-a 100
+26B8:0100 ; assembler test
+26B8:0100 ; just exit program
+26B8:0100 mov ah,4C
+26B8:0102 int 21
+26B8:0104 
+-q

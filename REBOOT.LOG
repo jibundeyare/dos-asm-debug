@@ -1,0 +1,7 @@
+-a 100
+26B8:0100 ; reboot
+26B8:0100 ; [Making POWEROFF.COM and REBOOT.COM using MS-DOS DEBUG - YouTube](https://www
+26B8:0100 mov al,fe
+26B8:0102 out 64,al
+26B8:0104 
+-q
