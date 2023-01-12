@@ -6,7 +6,7 @@ This repo contains aseembly code and tools that can be used to compile code with
 
 1. Write a assembly code script that can be fed to `debug.exe`
 2. Use the `asm.bat` script to output a `.log` file
-3. Use the python script `parser.py` to resolve address segements and offsets and generate a `.d` file
+3. Use the python script `parser.py` to resolve address segments and offsets and generate a `.d` file
 4. Use the `d.bat` script to compile a `.com` file
 
 ## Example
