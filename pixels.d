@@ -1,8 +1,8 @@
 a
-; Pixel
+; Pixels
 ;
 ; set video mode 13
-; graphic mode, 320x200
+; graphic mode 320x200
 mov ah,00
 mov al,13
 int 10
@@ -14,12 +14,12 @@ mov al,[0146] ; OFFSET color
 int 10
 ; increment pixel location
 mov bx,0142 ; OFFSET x
-inc WORD PTR [bx]
+inc word ptr [bx]
 mov bx,0144 ; OFFSET y
-inc WORD PTR [bx]
+inc word ptr [bx]
 ; change color
-mov bx,0146 ; OFFSET color
-dec BYTE PTR [bx]
+; blue
+mov byte ptr [0146],03 ; OFFSET color
 ; draw a pixel
 mov ah,0c
 mov cx,[0142] ; OFFSET x
@@ -47,7 +47,7 @@ dw 0064
 ; red
 db 04
 
-n pixel.com
+n pixels.com
 r cx
 0147
 w

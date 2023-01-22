@@ -1,30 +1,30 @@
 -a
-1686:0100 ; Pixel
+1686:0100 ; Pixels
 1686:0100 ;
 1686:0100 ; set video mode 13
-1686:0100 ; graphic mode, 320x200
+1686:0100 ; graphic mode 320x200
 1686:0100 mov ah,00
 1686:0102 mov al,13
 1686:0104 int 10
 1686:0106 ; draw a pixel
 1686:0106 mov ah,0c
-1686:0108 mov cx,[0000] ; OFFSET x
-1686:010C mov dx,[0000] ; OFFSET y
-1686:0110 mov al,[0000] ; OFFSET color
+1686:0108 mov cx,[0100] ; OFFSET x
+1686:010C mov dx,[0100] ; OFFSET y
+1686:0110 mov al,[0100] ; OFFSET color
 1686:0113 int 10
 1686:0115 ; increment pixel location
-1686:0115 mov bx,0000 ; OFFSET x
-1686:0118 inc WORD PTR [bx]
-1686:011A mov bx,0000 ; OFFSET y
-1686:011D inc WORD PTR [bx]
+1686:0115 mov bx,0100 ; OFFSET x
+1686:0118 inc word ptr [bx]
+1686:011A mov bx,0100 ; OFFSET y
+1686:011d inc word ptr [bx]
 1686:011F ; change color
-1686:011F mov bx,0000 ; OFFSET color
-1686:0122 dec BYTE PTR [bx]
+1686:011F ; blue
+1686:011f mov byte ptr [0100],03 ; OFFSET color
 1686:0124 ; draw a pixel
 1686:0124 mov ah,0c
-1686:0126 mov cx,[0000] ; OFFSET x
-1686:012A mov dx,[0000] ; OFFSET y
-1686:012E mov al,[0000] ; OFFSET color
+1686:0126 mov cx,[0100] ; OFFSET x
+1686:012A mov dx,[0100] ; OFFSET y
+1686:012E mov al,[0100] ; OFFSET color
 1686:0131 int 10
 1686:0133 ; wait for a key press
 1686:0133 mov ah,00

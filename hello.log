@@ -1,12 +1,12 @@
 -a
 1686:0100 ; Hello World
-1686:0100 mov dx,0000 ; OFFSET String
+1686:0100 mov dx,0100 ; OFFSET string
 1686:0103 mov ah,09
 1686:0105 int 21
 1686:0107 mov ah,4C
 1686:0109 mov al,0
 1686:010B int 21
-1686:010D ; #String
+1686:010D ; #string
 1686:010D db "Hello World!",0D,"$"
 1686:011B 
 -q

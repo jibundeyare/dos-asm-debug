@@ -93,7 +93,7 @@ for i, asm_line in enumerate(asm_lines):
         identifier = m.group(2)
 
         is_byte = False
-        search_string = '0000'
+        search_string = '0100'
 
         if asm_line.find(search_string) == -1:
             is_byte = True

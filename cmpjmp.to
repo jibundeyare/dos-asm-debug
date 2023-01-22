@@ -1,0 +1,66 @@
+-a
+1686:0100 ; cmpjmp
+1686:0100 ;
+1686:0100 ;           init  => NV UP EI PL NZ NA PO NC
+1686:0100 mov ax,2
+1686:0103 mov bx,3
+1686:0106 cmp ax,bx ; 3 - 2 => NV UP EI NG NZ AC PE CY
+1686:0108 mov ax,3
+1686:010B mov bx,2
+1686:010E cmp ax,bx ; 2 - 3 => NV UP EI PL NZ NA PO NC
+1686:0110 mov ax,2
+1686:0113 mov bx,2
+1686:0116 cmp ax,bx ; 2 - 2 => NV UP EI PL ZR NA PE NC
+1686:0118 ;
+1686:0118 ; if ax == bx : jne offset_end_if
+1686:0118 ; if ax != bx : je offset_end_if
+1686:0118 ; if ax < bx : jnl offset_end_if
+1686:0118 ; if ax <= bx : jnle offset_end_if
+1686:0118 ; if ax > bx : jng offset_end_if
+1686:0118 ; if ax >= bx : jnge offset_end_if
+1686:0118 mov ah,4C
+1686:011A mov al,0
+1686:011C int 21
+1686:011E 
+-r
+AX=0000  BX=0000  CX=0000  DX=0000  SP=FFEE  BP=0000  SI=0000  DI=0000  
+DS=1686  ES=1686  SS=1686  CS=1686  IP=0100   NV UP EI PL NZ NA PO NC 
+1686:0100 B80200        MOV	AX,0002                            
+-t =0100 9
+
+AX=0002  BX=0000  CX=0000  DX=0000  SP=FFEE  BP=0000  SI=0000  DI=0000  
+DS=1686  ES=1686  SS=1686  CS=1686  IP=0103   NV UP EI PL NZ NA PO NC 
+1686:0103 BB0300        MOV	BX,0003                            
+
+AX=0002  BX=0003  CX=0000  DX=0000  SP=FFEE  BP=0000  SI=0000  DI=0000  
+DS=1686  ES=1686  SS=1686  CS=1686  IP=0106   NV UP EI PL NZ NA PO NC 
+1686:0106 39D8          CMP	AX,BX                              
+
+AX=0002  BX=0003  CX=0000  DX=0000  SP=FFEE  BP=0000  SI=0000  DI=0000  
+DS=1686  ES=1686  SS=1686  CS=1686  IP=0108   NV UP EI NG NZ AC PE CY 
+1686:0108 B80300        MOV	AX,0003                            
+
+AX=0003  BX=0003  CX=0000  DX=0000  SP=FFEE  BP=0000  SI=0000  DI=0000  
+DS=1686  ES=1686  SS=1686  CS=1686  IP=010B   NV UP EI NG NZ AC PE CY 
+1686:010B BB0200        MOV	BX,0002                            
+
+AX=0003  BX=0002  CX=0000  DX=0000  SP=FFEE  BP=0000  SI=0000  DI=0000  
+DS=1686  ES=1686  SS=1686  CS=1686  IP=010E   NV UP EI NG NZ AC PE CY 
+1686:010E 39D8          CMP	AX,BX                              
+
+AX=0003  BX=0002  CX=0000  DX=0000  SP=FFEE  BP=0000  SI=0000  DI=0000  
+DS=1686  ES=1686  SS=1686  CS=1686  IP=0110   NV UP EI PL NZ NA PO NC 
+1686:0110 B80200        MOV	AX,0002                            
+
+AX=0002  BX=0002  CX=0000  DX=0000  SP=FFEE  BP=0000  SI=0000  DI=0000  
+DS=1686  ES=1686  SS=1686  CS=1686  IP=0113   NV UP EI PL NZ NA PO NC 
+1686:0113 BB0200        MOV	BX,0002                            
+
+AX=0002  BX=0002  CX=0000  DX=0000  SP=FFEE  BP=0000  SI=0000  DI=0000  
+DS=1686  ES=1686  SS=1686  CS=1686  IP=0116   NV UP EI PL NZ NA PO NC 
+1686:0116 39D8          CMP	AX,BX                              
+
+AX=0002  BX=0002  CX=0000  DX=0000  SP=FFEE  BP=0000  SI=0000  DI=0000  
+DS=1686  ES=1686  SS=1686  CS=1686  IP=0118   NV UP EI PL ZR NA PE NC 
+1686:0118 B44C          MOV	AH,4C                              
+-q

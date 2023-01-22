@@ -1,0 +1,93 @@
+-a
+1686:0100 ; Bresenham line algorithm
+1686:0100 ;
+1686:0100 jmp near 0100 ; OFFSET start
+1686:0103 ; data
+1686:0103 ; #x0
+1686:0103 ; x0 = 10
+1686:0103 dw 000a
+1686:0105 ; #y0
+1686:0105 ; y0 = 10
+1686:0105 dw 000a
+1686:0107 ; #x1
+1686:0107 ; x1 = 300
+1686:0107 dw 012C
+1686:0109 ; #y1
+1686:0109 ; y1 = 80
+1686:0109 dw 0050
+1686:010B ; #delta_x
+1686:010B dw 0000
+1686:010D ; #delta_y
+1686:010D dw 0000
+1686:010F ; #x
+1686:010F dw 0000
+1686:0111 ; #y
+1686:0111 dw 0000
+1686:0113 ; #distance
+1686:0113 dw 0000
+1686:0115 ; #color
+1686:0115 ; red
+1686:0115 db 04
+1686:0116 ; #start
+1686:0116 ; set video mode 13
+1686:0116 ; graphic mode 320x200
+1686:0116 mov ah,00
+1686:0118 mov al,13
+1686:011A int 10
+1686:011C ; delta_x = x1 - x0
+1686:011C mov ax,[0100] ; OFFSET x1
+1686:011F sub ax,[0100] ; OFFSET x0
+1686:0123 mov word ptr [0100],ax ; OFFSET delta_x
+1686:0126 ; delta_y = y1 - y0
+1686:0126 mov ax,[0100] ; OFFSET y1
+1686:0129 sub ax,[0100] ; OFFSET y0
+1686:012D mov word ptr [0100],ax ; OFFSET delta_y
+1686:0130 ; x = x0
+1686:0130 mov ax,[0100] ; OFFSET x0
+1686:0133 mov word ptr [0100],ax ; OFFSET x
+1686:0136 ; y = y0
+1686:0136 mov ax,[0100] ; OFFSET y0
+1686:0139 mov word ptr [0100],ax ; OFFSET y
+1686:013C ; while x <= x1
+1686:013C ; #while_x_le_x1
+1686:013C mov ax,[0100] ; OFFSET x
+1686:013F cmp ax,[0100] ; OFFSET x1
+1686:0143 jnle 0100 ; OFFSET end_while_x_le_x1
+1686:0145 ; draw a pixel
+1686:0145 mov ah,0c
+1686:0147 mov cx,[0100] ; OFFSET x
+1686:014B mov dx,[0100] ; OFFSET y
+1686:014F mov al,[0100] ; OFFSET color
+1686:0152 int 10
+1686:0154 ; if distance > 0
+1686:0154 mov ax,[0100] ; OFFSET distance
+1686:0157 cmp ax,0
+1686:015A jng 0100 ; OFFSET inc_x
+1686:015C ; y += 1
+1686:015C inc word ptr [0100] ; OFFSET y
+1686:0160 ; distance += -delta_x
+1686:0160 mov ax,[0100] ; OFFSET delta_x
+1686:0163 sub word ptr [0100],ax ; OFFSET distance
+1686:0167 ; #inc_x
+1686:0167 ; x += 1
+1686:0167 inc word ptr [0100] ; OFFSET x
+1686:016B ; distance += delta_y
+1686:016B mov ax,[0100] ; OFFSET delta_y
+1686:016E add word ptr [0100],ax ; OFFSET distance
+1686:0172 ; goto while_x_le_x1
+1686:0172 jmp near 0100 ; OFFSET while_x_le_x1
+1686:0175 ; #end_while_x_le_x1
+1686:0175 ; wait for a key press
+1686:0175 mov ah,00
+1686:0177 int 16
+1686:0179 ; restore video mode 03
+1686:0179 ; text mode
+1686:0179 mov ah,00
+1686:017B mov al,03
+1686:017D int 10
+1686:017F ; exit
+1686:017F mov ah,4C
+1686:0181 mov al,0
+1686:0183 int 21
+1686:0185 
+-q

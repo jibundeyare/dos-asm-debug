@@ -1,0 +1,57 @@
+-a
+1686:0100 ; printstr
+1686:0100 ;
+1686:0100 jmp near 0100 ; OFFSET start
+1686:0103 ;
+1686:0103 ; #message1
+1686:0103 db "Lorem","$"
+1686:0109 ; #message2
+1686:0109 db "Bar","$"
+1686:010D ; #message3
+1686:010D db "Baz","$"
+1686:0111 ;
+1686:0111 ; #proc_print_str_crlf
+1686:0111 ; save ax
+1686:0111 push ax
+1686:0112 ; print message
+1686:0112 mov ah,09
+1686:0114 int 21
+1686:0116 ; print CR
+1686:0116 mov dx,0100 ; OFFSET CR
+1686:0119 int 21
+1686:011B ; print LF
+1686:011B mov dx,0100 ; OFFSET LF
+1686:011E int 21
+1686:0120 ; restore ax
+1686:0120 pop ax
+1686:0121 ret
+1686:0122 ; #CR
+1686:0122 db 0D,"$"
+1686:0124 ; #LF
+1686:0124 db 0A,"$"
+1686:0126 ; endp
+1686:0126 ;
+1686:0126 ; #proc_print_str
+1686:0126 ; save ax
+1686:0126 push ax
+1686:0127 ; print message
+1686:0127 mov ah,09
+1686:0129 int 21
+1686:012B ; restore ax
+1686:012B pop ax
+1686:012C ret
+1686:012D ; endp
+1686:012D ;
+1686:012D ; #start
+1686:012D mov dx,0100 ; OFFSET message1
+1686:0130 call near 0100 ; OFFSET proc_print_str_crlf
+1686:0133 mov dx,0100 ; OFFSET message2
+1686:0136 call near 0100 ; OFFSET proc_print_str_crlf
+1686:0139 mov dx,0100 ; OFFSET message3
+1686:013C call near 0100 ; OFFSET proc_print_str
+1686:013F ; #exit
+1686:013F mov ah,4C
+1686:0141 mov al,0
+1686:0143 int 21
+1686:0145 
+-q
